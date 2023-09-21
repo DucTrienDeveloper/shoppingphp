@@ -1,0 +1,24 @@
+.dataTables_filter{
+    text-align:end !important;
+}
+.dataTables_filter label {
+    text-align: left !important;
+}
+.dataTables_paginate {
+    display: flex !important;
+    justify-content: right !important;
+}
+.dataTables_scroll{
+    margin-bottom: 10px !important;
+}
+.dataTables_scroll ::-webkit-scrollbar {
+    width: 2px !important;
+    height: 2px;
+}
+.dataTables_scroll ::-webkit-scrollbar-thumb {
+    background: #888;
+}
+.status-color{
+    color: red;
+    font-weight: 500;
+}
