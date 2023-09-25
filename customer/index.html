@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body style="background: red;">
+    <div class="layout-bl">
+        <div id="dc">
+            <h6>Đã chọn:</h6>
+            <div style="display: flex;">
+                <div class="layout-spc" id="showHang">
+
+                </div>
+                <div class="layout-spc" id="showGia">
+
+                </div>
+
+            </div>
+            <hr />
+        </div>
+        <div class="tl">
+            <h6> Hãng :</h6>
+            <div class="list-h" id="hang-phone">
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+                <div class="card-hang">
+                    <img src="https://cdn.tgdd.vn/Brand/1/logo-iphone-220x48.png" alt="">
+                </div>
+            </div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+        <hr />
+        <div class="chon">
+            <div class="chon-1">
+                <h6>Giá</h6>
+                <div id="gia-phone">
+
+                </div>
+            </div>
+            <div class="chon-2">
+                <h6>
+                    Loại điện thoại
+                    <div class="ldt_dt" id="ldt-phone">
+
+                    </div>
+
+                </h6>
+            </div>
+            <div class="chon-3">
+                <div>
+                    <h6>Nhu Cầu</h6>
+                    <div class="list_nc">
+                        <div class="spc">
+                            <p>Sạc nhanh (từ 20W) </p>
+                        </div>
+                        <div class="spc">
+                            <p>Sạc siêu nhanh (từ 60W) </p>
+                        </div>
+                        <div class="spc">
+                            <p>Sạc không dây </p>
+
+                        </div>
+
+
+                    </div>
+                </div>
+                <div>
+
+                </div>
+                <div></div>
+
+            </div>
+        </div>
+        <div class="chon">
+            <div class="chon-1">
+                <h6>Raw</h6>
+                <div class="list_raw">
+                    <div class="spc">
+                        <p>2 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>3 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>4 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>6 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>8 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>12 GB</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chon-2">
+                <h6>Dung lượng phù hợp</h6>
+                <div class="list_raw" onclick="handleHanngClick()">
+                    <div class="spc" onclick="handleHanngClick()">
+                        <p>32 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>64 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>128 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>256 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>512 GB</p>
+                    </div>
+                    <div class="spc">
+                        <p>1 T</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chon-3">
+
+            </div>
+
+        </div>
+    </div>
+    <script>
+        let boloc = {
+            hang: [],
+            gia: [],
+            nc: [],
+            ldt: [],
+            ram: [],
+            dllt: []
+
+        }
+
+        let danhSachHienThi = {
+            hang: [{
+                "tieude": "Iphone",
+                "value": "iphone"
+            },
+            {
+                "tieude": "Nokia",
+                "value": "nokia"
+            },
+            {
+                "tieude": "sam sung",
+                "value": "samsung"
+
+            }
+
+            ],
+            gia: [
+                {
+                    "tieude": "Duoi 2 trieu",
+                    "value": "nho1tr"
+                },
+                {
+                    "tieude": "Từ 2 - 4 trieu",
+                    "value": "nho2tr"
+                },
+            ],
+            ldt: [
+                {
+                    "tieude": "IOS",
+                    "src": "https://cdn.tgdd.vn/ValueIcons/android.jpg",
+                    "value": "ios"
+                },
+                {
+                    "tieude": "Android",
+                    "src": "https://cdn.tgdd.vn/ValueIcons/iphone.jpg",
+                    "value": "android"
+                },
+                {
+                    "tieude": "Điện thoại phổ thông ",
+                    "src": "https://cdn.tgdd.vn/ValueIcons/dien-thoai-pho-thong.jpg",
+                    "value": "dtpt"
+                }
+            ],
+            nc: [{
+                "tieude": "Sạc nhanh (từ 20W)",
+                "value": "snt20w"
+            },
+            {
+                "tieude": "Sạc nhanh (từ 60W)",
+                "value": "skd"
+            },
+
+            ],
+            ram: [{
+                "tieude": "2 GB",
+                "value": "2GB"
+            }, {
+                "tieude": "3 GB",
+                "value": "3GB"
+            },
+            {
+                "tieude": "6 GB",
+                "value": "6GB"
+            }
+
+            ],
+            dllt: [{
+                "tieude": "2 GB",
+                "value": "2GB"
+            }, {
+                "tieude": "3 GB",
+                "value": "3GB"
+            },
+            {
+                "tieude": "6 GB",
+                "value": "6GB"
+            }
+            ]
+        };
+
+        const hienThiDanhSach = () => {
+            if (!!danhSachHienThi) {
+                const hangPhone = document.getElementById("hang-phone")
+                const giaPhone = document.getElementById("gia-phone")
+                const ldtPhone = document.getElementById("ldt-phone")
+                if (danhSachHienThi.hang.length > 0) {
+                    let htmlHang = ""
+                    for (let index = 0; index < danhSachHienThi.hang.length; index++) {
+                        htmlHang += "<div  onclick=\"handleClick('hang','" + danhSachHienThi.hang[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.hang[index].tieude + "</p> </div>"
+                    }
+                    hangPhone.innerHTML = htmlHang
+                }
+                if (danhSachHienThi.gia.length > 0) {
+                    let htmlGia = "";
+                    for (let index = 0; index < danhSachHienThi.gia.length; index++) {
+                        htmlGia += "<div  onclick=\"handleClick('gia','" + danhSachHienThi.gia[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.gia[index].tieude + "</p> </div>"
+                    }
+                    giaPhone.innerHTML = htmlGia
+                }
+                if (danhSachHienThi.ldt.length > 0) {
+                    let htmlldt = "";
+                    for (let index = 0; index < danhSachHienThi.ldt.length; index++) {
+                        htmlldt += " <div class=\"card_ldt\">" + "<img onclick=\"=handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\" src='" + danhSachHienThi.ldt[index].src + "'<p class=\"text/" > danhSachHienThi.ldt[index].tieude + "</p>  </div>"
+                    }
+                    ldtPhone.innerHTML = htmlldt
+                }
+            }
+
+        };
+
+        function handleClick(key, value) {
+            handleData(key, value)
+            showUIUX()
+        }
+
+        function showUIUX() {
+            const showHang = document.getElementById("showHang")
+            let listKey = ["gia", "hang", "nc", "ram", "dllt"]
+            let showHtml = "";
+            let arrayList = []
+            for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+                for (let index = 0; index < danhSachHienThi[listKey[indexKey]].length; index++) {
+                    for (let item = 0; item < boloc[listKey[indexKey]].length; item++) {
+                        if (boloc[listKey[indexKey]][item] == danhSachHienThi[listKey[indexKey]][index].value) {
+                            showHtml += "<div  onclick=\"handleClick('" + listKey[indexKey] + "','" + danhSachHienThi[listKey[indexKey]][index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi[listKey[indexKey]][index].tieude + "</p> </div>"
+                            arrayList.push(danhSachHienThi[listKey[indexKey]][index].value)
+                        }
+                    }
+                }
+            }
+            showGia.innerHTML = showHtml
+
+            console.log(arrayList, "manh dep trai")
+
+        }
+
+
+        function handleData(key, value) {
+            if (key === "hang") {
+                if (boloc.hang.length > 0) {
+                    for (let index = 0; index < boloc.hang.length; index++) {
+                        if (value === boloc.hang[index]) {
+                            return boloc.hang.splice(index, 1)
+                        }
+                    }
+                    return boloc.hang.push(value)
+                }
+                return boloc.hang.push(value)
+            }
+            if (key === "gia") {
+                if (boloc.gia.length > 0) {
+                    for (let index = 0; index < boloc.gia.length; index++) {
+                        if (value === boloc.gia[index]) {
+                            return boloc.gia.splice(index, 1)
+                        }
+                    }
+                    return boloc.gia.push(value)
+
+                }
+                return boloc.gia.push(value)
+            }
+            if (key === "nc") {
+                if (boloc.nc.length > 0) {
+                    for (let index = 0; index < boloc.nc.length; index++) {
+                        if (value === boloc.nc[index]) {
+                            return boloc.nc.splice(index, 1)
+                        }
+                    }
+                    return boloc.nc.push(value)
+
+                }
+                return boloc.nc.push(value)
+            }
+            if (key === "ram") {
+                if (boloc.ram.length > 0) {
+                    for (let index = 0; index < boloc.ram.length; index++) {
+                        if (value === boloc.ram[index]) {
+                            return boloc.ram.splice(index, 1)
+                        }
+                    }
+                    return boloc.ram.push(value)
+
+                }
+
+                return boloc.ram.push(value)
+            }
+            if (key === "dllt") {
+                if (boloc.dllt.length > 0) {
+                    for (let index = 0; index < boloc.dllt.length; index++) {
+                        if (value === boloc.dllt[index]) {
+                            return boloc.dllt.splice(index, 1)
+                        }
+                    }
+                    return boloc.dllt.push(value)
+
+                }
+                return boloc.dllt.push(value)
+            }
+            if (key === "ldt") {
+                if (boloc.dllt.length > 0) {
+                    for (let index = 0; index < boloc.dllt.length; index++) {
+                        if (value === boloc.dllt[index]) {
+                            return boloc.dllt.splice(index, 1)
+                        }
+                    }
+                    return boloc.dllt.push(value)
+
+                }
+                return boloc.dllt.push(value)
+            }
+        }
+
+        function handleHienThiBoLo() {
+            console.log(boloc)
+
+        }
+        handleHienThiBoLo()
+
+        hienThiDanhSach();
+
+
+
+    </script>
+</body>
+
+</html>
