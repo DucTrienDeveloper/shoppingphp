@@ -69,17 +69,8 @@
             <div class="chon-3">
                 <div>
                     <h6>Nhu Cầu</h6>
-                    <div class="list_nc">
-                        <div class="spc">
-                            <p>Sạc nhanh (từ 20W) </p>
-                        </div>
-                        <div class="spc">
-                            <p>Sạc siêu nhanh (từ 60W) </p>
-                        </div>
-                        <div class="spc">
-                            <p>Sạc không dây </p>
+                    <div class="list_nc" id="nc-phone">
 
-                        </div>
 
 
                     </div>
@@ -94,48 +85,13 @@
         <div class="chon">
             <div class="chon-1">
                 <h6>Raw</h6>
-                <div class="list_raw">
-                    <div class="spc">
-                        <p>2 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>3 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>4 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>6 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>8 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>12 GB</p>
-                    </div>
+                <div class="list_raw" id="raw-phone">
+
                 </div>
             </div>
             <div class="chon-2">
                 <h6>Dung lượng phù hợp</h6>
-                <div class="list_raw" onclick="handleHanngClick()">
-                    <div class="spc" onclick="handleHanngClick()">
-                        <p>32 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>64 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>128 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>256 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>512 GB</p>
-                    </div>
-                    <div class="spc">
-                        <p>1 T</p>
-                    </div>
+                <div class="list_raw" id="dlph-phone">
                 </div>
             </div>
             <div class="chon-3">
@@ -209,7 +165,7 @@
 
             ],
             ram: [{
-                "tieude": "2 GB",
+                "tieude": "2GB",
                 "value": "2GB"
             }, {
                 "tieude": "3 GB",
@@ -222,15 +178,15 @@
 
             ],
             dllt: [{
-                "tieude": "2 GB",
-                "value": "2GB"
+                "tieude": "20GB",
+                "value": "20GB"
             }, {
-                "tieude": "3 GB",
-                "value": "3GB"
+                "tieude": "30GB",
+                "value": "30GB"
             },
             {
-                "tieude": "6 GB",
-                "value": "6GB"
+                "tieude": "60GB",
+                "value": "60GB"
             }
             ]
         };
@@ -240,26 +196,54 @@
                 const hangPhone = document.getElementById("hang-phone")
                 const giaPhone = document.getElementById("gia-phone")
                 const ldtPhone = document.getElementById("ldt-phone")
+                const ncPhone = document.getElementById("nc-phone")
+                const rawphone = document.getElementById("raw-phone")
+                const dlltPhone = document.getElementById("dllt-phone")
+                const dlphPhone = document.getElementById("dlph-phone")
+
                 if (danhSachHienThi.hang.length > 0) {
                     let htmlHang = ""
                     for (let index = 0; index < danhSachHienThi.hang.length; index++) {
-                        htmlHang += "<div  onclick=\"handleClick('hang','" + danhSachHienThi.hang[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.hang[index].tieude + "</p> </div>"
+                        htmlHang += "<div  id='" + danhSachHienThi.hang[index].value + "'   onclick=\"handleClick('hang','" + danhSachHienThi.hang[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.hang[index].tieude + "</p> </div>"
                     }
                     hangPhone.innerHTML = htmlHang
                 }
                 if (danhSachHienThi.gia.length > 0) {
                     let htmlGia = "";
                     for (let index = 0; index < danhSachHienThi.gia.length; index++) {
-                        htmlGia += "<div  onclick=\"handleClick('gia','" + danhSachHienThi.gia[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.gia[index].tieude + "</p> </div>"
+                        htmlGia += "<div id='" + danhSachHienThi.gia[index].value + "'  onclick=\"handleClick('gia','" + danhSachHienThi.gia[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.gia[index].tieude + "</p> </div>"
                     }
                     giaPhone.innerHTML = htmlGia
                 }
                 if (danhSachHienThi.ldt.length > 0) {
                     let htmlldt = "";
                     for (let index = 0; index < danhSachHienThi.ldt.length; index++) {
-                        htmlldt += " <div class=\"card_ldt\">" + "<img onclick=\"=handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\" src='" + danhSachHienThi.ldt[index].src + "'<p class=\"text/" > danhSachHienThi.ldt[index].tieude + "</p>  </div>"
+                        htmlldt += "<div id='" + danhSachHienThi.ldt[index].value + "'  onclick=\"handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.ldt[index].tieude + "</p> </div>"
                     }
                     ldtPhone.innerHTML = htmlldt
+                }
+                if (danhSachHienThi.nc.length > 0) {
+                    let htmlnc = "";
+                    for (let index = 0; index < danhSachHienThi.nc.length; index++) {
+                        htmlnc += "<div id='" + danhSachHienThi.nc[index].value + "'  onclick=\"handleClick('nc','" + danhSachHienThi.nc[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.nc[index].tieude + "</p> </div>"
+                    }
+                    ncPhone.innerHTML = htmlnc
+                }
+
+                if (danhSachHienThi.ram.length > 0) {
+                    let htmlraw = "";
+                    for (let index = 0; index < danhSachHienThi.ram.length; index++) {
+                        htmlraw += "<div id= '" + danhSachHienThi.ram[index].value + "'  onclick=\"handleClick('ram','" + danhSachHienThi.ram[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.ram[index].tieude + "</p> </div>"
+                    }
+                    rawphone.innerHTML = htmlraw
+                }
+
+                if (danhSachHienThi.dllt.length > 0) {
+                    let htmldllt = "";
+                    for (let index = 0; index < danhSachHienThi.dllt.length; index++) {
+                        htmldllt += "<div id= '" + danhSachHienThi.dllt[index].value + "'  onclick=\"handleClick('dllt','" + danhSachHienThi.dllt[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.dllt[index].tieude + "</p> </div>"
+                    }
+                    dlphPhone.innerHTML = htmldllt
                 }
             }
 
@@ -272,24 +256,23 @@
 
         function showUIUX() {
             const showHang = document.getElementById("showHang")
-            let listKey = ["gia", "hang", "nc", "ram", "dllt"]
+            let listKey = ["gia", "hang", "nc", "ram", "dllt", "ldt"]
             let showHtml = "";
             let arrayList = []
             for (indexKey = 0; indexKey < listKey.length; indexKey++) {
                 for (let index = 0; index < danhSachHienThi[listKey[indexKey]].length; index++) {
                     for (let item = 0; item < boloc[listKey[indexKey]].length; item++) {
                         if (boloc[listKey[indexKey]][item] == danhSachHienThi[listKey[indexKey]][index].value) {
-                            showHtml += "<div  onclick=\"handleClick('" + listKey[indexKey] + "','" + danhSachHienThi[listKey[indexKey]][index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi[listKey[indexKey]][index].tieude + "</p> </div>"
+                            let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
+                            id.style.border = "1px solid #288ad6"
+                            showHtml += "<div   onclick=\"handleClick('" + listKey[indexKey] + "','" + danhSachHienThi[listKey[indexKey]][index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi[listKey[indexKey]][index].tieude + "</p> </div>"
                             arrayList.push(danhSachHienThi[listKey[indexKey]][index].value)
                         }
                     }
                 }
             }
             showGia.innerHTML = showHtml
-
-            console.log(arrayList, "manh dep trai")
-
-        }
+        }   
 
 
         function handleData(key, value) {
@@ -354,16 +337,16 @@
                 return boloc.dllt.push(value)
             }
             if (key === "ldt") {
-                if (boloc.dllt.length > 0) {
-                    for (let index = 0; index < boloc.dllt.length; index++) {
-                        if (value === boloc.dllt[index]) {
-                            return boloc.dllt.splice(index, 1)
+                if (boloc.ldt.length > 0) {
+                    for (let index = 0; index < boloc.ldt.length; index++) {
+                        if (value === boloc.ldt[index]) {
+                            return boloc.ldt.splice(index, 1)
                         }
                     }
-                    return boloc.dllt.push(value)
+                    return boloc.ldt.push(value)
 
                 }
-                return boloc.dllt.push(value)
+                return boloc.ldt.push(value)
             }
         }
 
