@@ -61,7 +61,7 @@
                 <h6>
                     Loại điện thoại
                     <div class="ldt_dt" id="ldt-phone">
-
+                        
                     </div>
 
                 </h6>
@@ -203,7 +203,7 @@
 
                 if (danhSachHienThi.hang.length > 0) {
                     let htmlHang = ""
-                    for (let index = 0; index < danhSachHienThi.hang.length; index++) {
+                    for (let index = 0; index < danhSachHienThi.hang.length; index++) { 
                         htmlHang += "<div  id='" + danhSachHienThi.hang[index].value + "'   onclick=\"handleClick('hang','" + danhSachHienThi.hang[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.hang[index].tieude + "</p> </div>"
                     }
                     hangPhone.innerHTML = htmlHang
@@ -218,14 +218,14 @@
                 if (danhSachHienThi.ldt.length > 0) {
                     let htmlldt = "";
                     for (let index = 0; index < danhSachHienThi.ldt.length; index++) {
-                        htmlldt += "<div id='" + danhSachHienThi.ldt[index].value + "'  onclick=\"handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.ldt[index].tieude + "</p> </div>"
+                        htmlldt += "<div id='" + danhSachHienThi.ldt[index].value + "'  onclick=\"handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\"  class=\"card_ldt\">" + "<img src='" + danhSachHienThi.ldt[index].src + "'>"+"<p class=\"text\">" + danhSachHienThi.ldt[index].tieude + "</p> </div>"
                     }
                     ldtPhone.innerHTML = htmlldt
                 }
                 if (danhSachHienThi.nc.length > 0) {
                     let htmlnc = "";
                     for (let index = 0; index < danhSachHienThi.nc.length; index++) {
-                        htmlnc += "<div id='" + danhSachHienThi.nc[index].value + "'  onclick=\"handleClick('nc','" + danhSachHienThi.nc[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.nc[index].tieude + "</p> </div>"
+                        htmlnc += "<div id='" + danhSachHienThi.nc[index].value + "'  onclick=\"handleClick('nc','" + danhSachHienThi.nc[index].value + "')\"  class=\"spc\">"    + "<p>" + danhSachHienThi.nc[index].tieude + "</p> </div>"
                     }
                     ncPhone.innerHTML = htmlnc
                 }
@@ -258,15 +258,15 @@
             const showHang = document.getElementById("showHang")
             let listKey = ["gia", "hang", "nc", "ram", "dllt", "ldt"]
             let showHtml = "";
-            let arrayList = []
             for (indexKey = 0; indexKey < listKey.length; indexKey++) {
                 for (let index = 0; index < danhSachHienThi[listKey[indexKey]].length; index++) {
+                    let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
+                            id.style.border = "1px solid #666"
                     for (let item = 0; item < boloc[listKey[indexKey]].length; item++) {
                         if (boloc[listKey[indexKey]][item] == danhSachHienThi[listKey[indexKey]][index].value) {
                             let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
                             id.style.border = "1px solid #288ad6"
                             showHtml += "<div   onclick=\"handleClick('" + listKey[indexKey] + "','" + danhSachHienThi[listKey[indexKey]][index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi[listKey[indexKey]][index].tieude + "</p> </div>"
-                            arrayList.push(danhSachHienThi[listKey[indexKey]][index].value)
                         }
                     }
                 }
