@@ -89,9 +89,8 @@
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li class="active"><a href="index1.php">Home</a></li>
-                        <li><a href="phone.php?id=1">Iphone</a></li>
-                        <li><a href="phone.php?id=2">Samsung</a></li>
-                        <li><a href="phone.php?id=3">Oppo</a></li>
+                        <li><a href="#" data-toggle="modal" data-target="#login">Bộ lọc</a></li>
+                        
                         <li><a href="giohang.php">Giỏ hàng</a></li>
                         <li><a href="#">Others</a></li>
                         <li><a href="#">Contact</a></li>

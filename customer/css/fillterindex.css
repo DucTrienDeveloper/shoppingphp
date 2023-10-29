@@ -1,15 +1,30 @@
-*{
-    margin: 0;
-    padding: 0;
-}
+
 .layout-bl {
-   width: 700px;
-   height: 800px;
+   width: 583px;
+   height: 400px;
    background: white;
     margin: auto;
-    padding: 16px;
     border-radius: 4px;
+    overflow: auto;
 }
+.layout-bl::-webkit-scrollbar {
+    width: 4px;
+  }
+  
+  /* Track */
+  .layout-bl::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  .layout-bl::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  .layout-bl::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
 h6 {
     font-weight: bold;
     font-size: 16px;
@@ -34,12 +49,12 @@ h6 {
 }
 
 .spc p {
-    font-size: 14px;
+    font-size: 10px;
 }
 .tl{
     margin: 10px 0;
 }
-img {
+.lits .img {
     display: flex;
     width: auto;
     max-height: 25px;
@@ -130,7 +145,7 @@ img {
     object-fit: contain;
     justify-content: center;
 }
-.text{text-align: center;margin-top: 12px;}
+.text{text-align: center;margin-top: 12px;-webkit-box-sizing: inherit; margin: 0px;}
 .dtpt{
     width: 136px; 
 }
@@ -140,4 +155,11 @@ img {
    width: 100%;
    flex-wrap: wrap;
    justify-content: center;
+}
+.spc p {
+    margin: 0px !important
+}
+.xoatatca:hover{
+    color:aqua ;
+    font-size: 14px;
 }
