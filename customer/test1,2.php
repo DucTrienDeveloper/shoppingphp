@@ -6,8 +6,9 @@
     <title>Document</title>
 </head>
 <body>
-    <a href="getds.php?gia=tren">Nhấn vào đây</a>
+    <a href="getds.php?hang=iphone,samsung&modal=2">Nhấn vào đây</a>
   
     
 </body>
 </html>
+

@@ -753,7 +753,6 @@ require "../inc/headerweb.php";
         handelefilter();
 
     }
-
     const showUIUX = async () => {
         const showHang = document.getElementById("showHang")
         let showHtml = "";
@@ -785,7 +784,7 @@ require "../inc/headerweb.php";
             console.log(boloc, "afdsa")
         }
 
-        showGia.innerHTML = showHtml
+        showHang.innerHTML = showHtml
     }
 
     const handleDeleteAll = () => {
@@ -800,7 +799,7 @@ require "../inc/headerweb.php";
     }
 
     function handleData(key, value) {
-        if (key === "hang") {
+        if (key === "hang") {  
             if (boloc.hang.length > 0) {
                 for (let index = 0; index < boloc.hang.length; index++) {
                     if (value === boloc.hang[index]) {
@@ -912,6 +911,7 @@ require "../inc/headerweb.php";
                 }
             });
             let sumNumber = await res.json()
+            console.log(sumNumber)
             if (sumNumber.soluong.soluong > 0) {
                 btn.style.pointerEvents = "auto"
                 btn.style.cursor = "pointer";
@@ -950,13 +950,13 @@ require "../inc/headerweb.php";
     const html = (danhsach) => {
         console.log(danhsach, "dad")
         if (danhsach && danhsach.length > 0) {
-            let hienthi = ""
+            let hienthi = "" 
             let produc = document.querySelector("#product-carousel");
             if (produc) {
                 produc.remove();
             }
             let late = document.querySelector("#latest-product")
-            late.innerHTML = hienthi;
+            late.innerHTML = hienthi;//clear data cũ
 
 
             for (let index = 0; index < danhsach.length; index++) {
@@ -975,18 +975,19 @@ require "../inc/headerweb.php";
                                 </div>`
 
             }
-            late.innerHTML = hienthi
+            late.innerHTML = hienthi // thêm data cũ
             late.style.display = "flex";
             late.style.flexWrap = "wrap";
             late.style.gap = "24px"
         }
 
 
+
     }
 
     btn.onclick = handleClickKetQua = async () => {
-        let  hienthiurl  = "http://localhost/php%20shopping/shoppingphp/customer/getds.php?"
-        let url = 'http://localhost/php%20shopping/shoppingphp/customer/getds.php?';
+        // let  hienthiurl  = "http://localhost/php%20shopping/shoppingphp/customer/getds.php?"
+        let url = 'http://localhost/php%20shopping/shoppingphp/customer/getds.php?modal=1&';
         for (indexKey = 0; indexKey < listKey.length; indexKey++) {
             if (boloc[listKey[indexKey]].length > 0) {
                 url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
@@ -1005,13 +1006,12 @@ require "../inc/headerweb.php";
                     "Content-Type": "application/json"
                 }
             });
+            console.log(Api)
+            
             let danhsach = await res.json();
             console.log(danhsach, "danhsachAPI")
             loading.style.display = "none";
             return html(danhsach)
-
-
-
 
             return output
         } catch (error) {
