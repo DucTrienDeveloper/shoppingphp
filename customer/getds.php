@@ -312,34 +312,6 @@
         mysqli_close($connection);
         echo json_encode($sanphams);
     }
-    if ($modal == 2)
-    {
-        error_reporting(0);
-        $hang = $_GET['hang'];
-        $gia = $_GET['gia'];
-        $dunglung = $_GET['dungluong'];
-        $luuluong = $_GET['dllt'];
-        $dexuat = $_GET['dexuat'];
-        $img = $_GET['ldt'];
-        $sql = logic($hang, $gia, $dexuat, $dungluong, $luuluong, $img);
-        // echo $sql;
-        $result = mysqli_query($conn, $sql);
-        while($row = mysqli_fetch_array($result)){
-            $output .=  ' <div id="single-product" class="card-dienthoai" style="width:200px">
-            <div  class="product-image">
-                 <img  id="single-product-img" src="'.$row['img'].'"  alt="">
-            </div>
-
-            <h2 id="single-product-tieude"><a href="single-product.html">'.$row['tensp'].'</a></h2>
-
-            <div id="single-product-gia" class="product-carouse">
-                <ins>'.$row['gia'].' VND</ins>
-                
-            </div>
-        </div> ';
-        }
-        echo $output;
-        
-    }
+    
     ?>
 

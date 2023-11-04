@@ -564,7 +564,7 @@ require "../inc/headerweb.php";
                     <button type="button" style="width: 150px;height: 32px;" data-dismiss="modal" class=" btn btn-outline-danger">Hủy</button>
                     <div id="ketqua" class="button" style="width: 150px; height: 32px;" data-dismiss="modal">
                         <i class="fa-solid fa-circle-notch icon spinner"></i>
-                        <span class="btn-text" user-selcect="none"> <a  id="getLink" href="#"> </a></span>
+                        <span class="btn-text" user-selcect="none"> <a id="getLink" href="#"> </a></span>
                     </div>
 
                 </div>
@@ -675,6 +675,81 @@ require "../inc/headerweb.php";
         showUIUX()
     }
 
+    const handlleUrl =async () => {
+
+
+        let url = location.href;
+        console.log(url)
+        let layfilter = url.split("?").splice(1)
+        if (layfilter.length > 0) {
+            let list = layfilter.toString().split("&");
+            console.log(list)
+            for (index = 0; index < list.length; index++) {
+                let urlItem = list[index].split("=")
+                let key = urlItem[0]
+                let valueString = urlItem.splice(1).toString();
+                let danhsach = valueString.split(",")
+
+
+                for (item = 0; item < danhsach.length; item++) {
+                    console.log(danhsach[item])
+                    handleData(key, danhsach[item])
+                }
+
+            }
+            handelefilter()
+
+
+            let url = 'http://localhost/php%20shopping/shoppingphp/customer/getds.php?modal=1&';
+            let hienthi = 'http://localhost/php%20shopping/shoppingphp/customer/index1.php?modal=2&';
+            for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+                if (boloc[listKey[indexKey]].length > 0) {
+                    url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+                    hienthi += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+
+                }
+
+            }
+            Api = url.slice(0, -1)
+            link = hienthi.slice(0, -1)
+            // console.log(link)
+            // window.location.replace(link);
+
+            try {
+                let loading = document.querySelector("#loading");
+                loading.style.display = "flex";
+
+                const res = await fetch(Api, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                // console.log(Api)
+
+                let danhsach = await res.json();
+                console.log(danhsach, "danhsachAPI", "APi trả về ")
+                loading.style.display = "none";
+
+                // window.location.replace(link);
+                // console.log(link)
+
+
+                return html(danhsach)
+
+                return output
+            } catch (error) {
+
+            }
+        }
+
+
+
+
+
+
+    }
+
 
 
 
@@ -683,7 +758,7 @@ require "../inc/headerweb.php";
         if (!!danhSachHienThi) {
             const hangPhone = document.getElementById("hang-phone")
             const giaPhone = document.getElementById("gia-phone")
-            const ldtPhone = document.getElementById("ldt-phone") 
+            const ldtPhone = document.getElementById("ldt-phone")
             const ncPhone = document.getElementById("dexuat-phone")
             const rawphone = document.getElementById("raw-phone")
             // const dlltPhone = document.getElementById("dllt-phone")
@@ -799,7 +874,7 @@ require "../inc/headerweb.php";
     }
 
     function handleData(key, value) {
-        if (key === "hang") {  
+        if (key === "hang") {
             if (boloc.hang.length > 0) {
                 for (let index = 0; index < boloc.hang.length; index++) {
                     if (value === boloc.hang[index]) {
@@ -888,6 +963,7 @@ require "../inc/headerweb.php";
         console.log(postApi);
 
 
+
         // fetch(postApi).then(function(response) {
         //     let response = await response.json();
 
@@ -950,13 +1026,13 @@ require "../inc/headerweb.php";
     const html = (danhsach) => {
         console.log(danhsach, "dad")
         if (danhsach && danhsach.length > 0) {
-            let hienthi = "" 
+            let hienthi = ""
             let produc = document.querySelector("#product-carousel");
             if (produc) {
                 produc.remove();
             }
             let late = document.querySelector("#latest-product")
-            late.innerHTML = hienthi;//clear data cũ
+            late.innerHTML = hienthi; //clear data cũ
 
 
             for (let index = 0; index < danhsach.length; index++) {
@@ -985,43 +1061,30 @@ require "../inc/headerweb.php";
 
     }
 
+
     btn.onclick = handleClickKetQua = async () => {
         // let  hienthiurl  = "http://localhost/php%20shopping/shoppingphp/customer/getds.php?"
         let url = 'http://localhost/php%20shopping/shoppingphp/customer/getds.php?modal=1&';
+        let hienthi = 'http://localhost/php%20shopping/shoppingphp/customer/index1.php?modal=1&';
         for (indexKey = 0; indexKey < listKey.length; indexKey++) {
             if (boloc[listKey[indexKey]].length > 0) {
                 url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+                hienthi += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
 
             }
 
         }
         Api = url.slice(0, -1)
-        try {
-            let loading = document.querySelector("#loading");
-            loading.style.display = "flex";
+        link = hienthi.slice(0, -1)
+        // console.log(link)
+        window.location.replace(link);
 
-            const res = await fetch(Api, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json"
-                }
-            });
-            console.log(Api)
-            
-            let danhsach = await res.json();
-            console.log(danhsach, "danhsachAPI")
-            loading.style.display = "none";
-            return html(danhsach)
-
-            return output
-        } catch (error) {
-
-        }
+        
 
     }
 
 
-
+    handlleUrl();
     getshowfilter()
     hienThiDanhSach()
     showUIUX()
