@@ -292,5 +292,4 @@ $phone->hang[] = $dienthoai2;
 $output = $phone;
 echo $hang; 
 
-
 echo json_encode($output);

@@ -525,6 +525,9 @@ require "../inc/headerweb.php";
 
                             </div>
                         </div>
+                        <!-- <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div> -->
                         <div class="chon-2">
                             <h6>
                                 Loại điện thoại
@@ -546,7 +549,7 @@ require "../inc/headerweb.php";
                     <div class="chon">
                         <div class="chon-1">
                             <h6>Ram</h6>
-                            <div class="list_raw" id="raw-phone">
+                            <div class="list_raw" id="ram-phone">
 
                             </div>
                         </div>
@@ -631,7 +634,7 @@ require "../inc/headerweb.php";
     let btn = document.querySelector("#ketqua");
 
     let danhSachHienThi = {}
-    let listKey = ["gia", "hang", "dexuat", "dungluong", "dllt", "ldt"]
+    let listKey = []
     // let link = "?hang = iphone,samsung"
     //     const putDb = async () => {
 
@@ -654,28 +657,32 @@ require "../inc/headerweb.php";
 
     const getshowfilter = async () => {
         const getHang = async () => {
-            try {
-                const res = await fetch("fetch.php", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-                let output = await res.json();
-                console.log(output);
-                return output
 
-            } catch (error) {
-
-            }
+            const res = await fetch("fetch.php", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            let output = await res.json();
+            console.log(output, "output");
+            return output
         }
 
         danhSachHienThi = await getHang()
+        listKey = Object.keys(danhSachHienThi)
+        console.log(listKey, "listkey")
+        console.log(danhSachHienThi,"danhsach");
         hienThiDanhSach();
         showUIUX()
     }
 
-    const handlleUrl =async () => {
+    console.log(danhSachHienThi, "danhsachhienthi")
+
+
+
+
+    const handlleUrl = async () => {
 
 
         let url = location.href;
@@ -708,7 +715,6 @@ require "../inc/headerweb.php";
                     hienthi += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
 
                 }
-
             }
             Api = url.slice(0, -1)
             link = hienthi.slice(0, -1)
@@ -731,7 +737,7 @@ require "../inc/headerweb.php";
                 console.log(danhsach, "danhsachAPI", "APi trả về ")
                 loading.style.display = "none";
 
-                // window.location.replace(link);
+                // window.location.replace(link);8
                 // console.log(link)
 
 
@@ -752,7 +758,14 @@ require "../inc/headerweb.php";
 
 
 
+    const countValue = () => {
+        let count = 0;
+        for (let index = 0; index < listKey.length; index++) {
 
+            count = boloc[listKey[index]].length + count;
+        }
+        console.log(count, "count")
+    }
 
     const hienThiDanhSach = async () => {
         if (!!danhSachHienThi) {
@@ -760,7 +773,7 @@ require "../inc/headerweb.php";
             const giaPhone = document.getElementById("gia-phone")
             const ldtPhone = document.getElementById("ldt-phone")
             const ncPhone = document.getElementById("dexuat-phone")
-            const rawphone = document.getElementById("raw-phone")
+            const rawphone = document.getElementById("ram-phone")
             // const dlltPhone = document.getElementById("dllt-phone")
             const dlphPhone = document.getElementById("dlph-phone")
 
@@ -858,7 +871,7 @@ require "../inc/headerweb.php";
             }
             console.log(boloc, "afdsa")
         }
-
+        countValue()
         showHang.innerHTML = showHtml
     }
 
@@ -1070,23 +1083,20 @@ require "../inc/headerweb.php";
             if (boloc[listKey[indexKey]].length > 0) {
                 url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
                 hienthi += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
-
             }
-
         }
         Api = url.slice(0, -1)
         link = hienthi.slice(0, -1)
-        // console.log(link)
         window.location.replace(link);
 
-        
+
 
     }
 
 
     handlleUrl();
     getshowfilter()
-    hienThiDanhSach()
+    // hienThiDanhSach()
     showUIUX()
 
     // hienThiDanhSach()

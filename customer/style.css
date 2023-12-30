@@ -414,10 +414,14 @@ z-index: 999;}
   text-decoration: none;border-color: #444;
 }
 .product-carousel-price ins {
-  color: #5a88ca;
-  font-weight: 700;
-  margin-right: 5px;
-  text-decoration: none;
+    color: #e83a3af6;
+    display: block;
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 18px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    cursor: pointer;
 }
 .product-hover a i.fa {
     margin-right: 5px;

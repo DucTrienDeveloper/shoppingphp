@@ -5,11 +5,9 @@ if ($conn->connect_error) {
 }
 require "../inc/headerweb.php";
 error_reporting(0);
-$tensp = $_GET['search'];
-$id;
+$tensp = $_GET['tensp'];
 
 echo $tensp;
-
 
 
 
