@@ -18,41 +18,25 @@ if(isset($_POST['input'])){
             public $img;
         }
         $sanphams = array();
-    $query = "SELECT * FROM sanpham WHERE tensp LIKE '%{$a}%' ORDER BY gia,soluong DESC LIMIT 5 ";
+    $query = "SELECT * FROM `sanpham` INNER JOIN searchproduct ON sanpham.idsp = searchproduct.productid INNER JOIN search ON searchproduct.searchid = search.id WHERE search.keyword LIKE '%$a%' OR sanpham.tensp LIKE '%$a%' GROUP BY idsp;";
     $result = mysqli_query($conn,$query);
     
         if (!$result) {
             die("Query Failed.");
         }
         if($nums = mysqli_num_rows($result)>0){
-        while ($row = mysqli_fetch_array($result)) {
+        while ($row = mysqli_fetch_array($result)){
             $sanpham = new sanpham();
             $sanpham->ten = $row['tensp'];
             $sanpham->gia = $row['gia'];
             $sanpham->img = $row['img'];
             $sanphams[] = $sanpham;
         }
+    }
         // mysqli_close($connection);
         echo json_encode($sanphams);
-    }else{
-        $query = "SELECT sanpham.tensp,sanpham.gia,sanpham.img FROM sanpham WHERE sanpham.dungluong = (SELECT iddungluong FROM luuluong WHERE (luuluong.dungluong = $a) AND (luuluong.loai = 'RAM'))";
-        $result1 = mysqli_query($conn,$query);
-        if(!$result1){
-            die("Query Failed.");
-        }
-        if($quantity = mysqli_num_rows($result1)>0){
-            while($row = mysqli_fetch_array($result1)){
-                $sanpham = new sanpham();
-                $sanpham->ten = $row['tensp'];
-                $sanpham->gia = $row['gia'];
-                $sanpham->img = $row['img'];
-                $sanphams[] = $sanpham;
-            }
-            echo json_encode($sanphams);
-        }
-
-    }
-    }    
+    
+}          
 //     if(mysqli_num_rows($result) > 0){
 //         echo $a;
 //     }else{

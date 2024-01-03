@@ -211,7 +211,7 @@
            
             $("#live_search").keyup(function() {
                 var input = $(this).val();
-                if (input.length > 2) {
+                if (input.length != '') {
                     icon.onclick = () => {
                         // webLink = `http://localhost/php%20shopping/shoppingphp`;
                         webLink = `https://www.google.com/search?q=${selectData}`;
