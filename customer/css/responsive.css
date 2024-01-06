@@ -5,7 +5,7 @@
 
 .wrapper{
   max-width: 450px;
-  margin: 150px auto;
+  margin-top: 0px !important;
 }
 
 .wrapper .search-input{

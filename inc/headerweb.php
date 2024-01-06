@@ -44,6 +44,7 @@
 
         .wrapper {
             max-width: 450px;
+            margin: 12px !important
         }
 
         .wrapper .search-input {
@@ -51,6 +52,37 @@
             width: 100%;
             border-radius: 5px;
             position: relative;
+            z-index: 999999;
+        }
+
+        .container {
+            height: 20px !important;
+            display: contents;
+
+        }
+
+        .search-input.active .autocom-box {
+            position: absolute;
+            padding: 10px 8px;
+            width: 251px;
+            opacity: 1;
+            background: white;
+            pointer-events: auto;
+        }
+
+        .wrapper .search-input {
+            box-shadow: none !important;
+        }
+
+        .search-input input {
+            font-size: 14px !important;
+            height: 40px !important;
+
+        }
+
+        .search-input .icon {
+            height: 40px !important;
+            line-height: 40px !important;
         }
 
         .search-input input {
@@ -113,26 +145,9 @@
     </style>
 </head>
 
-<body>
-
-    <div class="header-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8">
-                    <div class="user-menu">
-                        <ul>
-                            <li><a href="login.php"><i class="fa fa-user"></i> Login</a></li>
-                            <li><a href="giohang.php"><i class="fa fa-user"></i>Giỏ hàng</a></li>
-                            <li><a href="history.php"><i class="fa fa-user"></i>Lịch sử</a></li>
-                            <li><a href="logout.php"><i class="fa fa-user"></i>Logout</a></li>
-                        </ul>
-                    </div>
-                </div>
+<body style="background-color: white;">
 
 
-            </div>
-        </div>
-    </div> <!-- End header area -->
 
     <div class="site-branding-area">
         <div class="container">
@@ -165,16 +180,12 @@
                 </div>
                 <div class="navbar-collapse collapse" style="display: flex !important;">
                     <ul id="host" class="nav navbar-nav">
-                        <li class="active"><a href="index.php">Home</a></li>
                         <li><a id="listen" href="#latest-product" data-toggle="modal" data-target="#login">Bộ lọc
                                 <strong class="count">
                                     <script></script>
                                 </strong>
                             </a></li>
 
-                        <li><a href="giohang.php">Giỏ hàng</a></li>
-                        <li><a href="#">Others</a></li>
-                        <li><a href="#">Contact</a></li>
 
                     </ul>
 
@@ -208,14 +219,16 @@
         let linkTag = searchWrapper.querySelector("a");
         let dataReturn = {}
         $(document).ready(function() {
-           
+
             $("#live_search").keyup(function() {
-                var input = $(this).val();
-                if (input.length != '') {
+                var input = $(this).val().trim();
+                console.log(input, "Không có dữ liệu")
+                if (input.length) {
+                    console.log(input.length, "Không có dữ liệu")
                     icon.onclick = () => {
                         // webLink = `http://localhost/php%20shopping/shoppingphp`;
                         webLink = `https://www.google.com/search?q=${selectData}`;
-                window.location.replace(webLink);
+                        window.location.replace(webLink);
                     }
 
                     $.ajax({
@@ -228,24 +241,36 @@
 
 
                         success: function(data) {
-                            if (data.length) {
-                                let emptyArray = [];
-                                for (let index = 0; index < data.length; index++) {
-                                    emptyArray.push(`<li>${data[index].ten} </li>`)
+                            debugger
+                            if (data['sanpham'].length || data["keyword"].length) {
+                                
+                                let keyArray = [` <li style=${"color: blue;"}> gợi ý keyword </li>`];
+                                let productArray = [`<li> gợi ý sản phẩm </li>`];
+
+                                for (let index = 0; index < data['key'].length; index++) {
+                                    keyArray.push(` <li >${data['key'][index]} </li>`)
                                 }
+
+                                for (let number = 0; number < data['sanpham'].length; number++) {
+                                    productArray.push(` <li >${data['sanpham'][number].ten} </li>`)
+                                }
+
                                 searchWrapper.classList.add("active"); //show autocomplete box
-                                showSuggestions(emptyArray);
-                                console.log(emptyArray, "emtpy");
+                                showSuggestions(keyArray);
+                                showSuggestions(productArray);
                                 let allList = suggBox.querySelectorAll("li");
                                 for (let i = 0; i < allList.length; i++) {
                                     //adding onclick attribute in all li tag
                                     allList[i].setAttribute("onclick", "select(this)");
                                 }
+                            } else {
+                                showSuggestions(["Không có dữ liệu"])
                             }
                         }
                     });
                 } else {
-                    
+
+                    showSuggestions([])
 
                 }
             });
@@ -293,18 +318,28 @@
         function select(element) {
             let selectData = element.textContent;
             inputBox.value = selectData;
-          
-                webLink = `http://localhost/php%20shopping/shoppingphp/customer/single-product.php?tensp=${selectData}`;
-                window.location.replace(webLink);
-        
+
+            webLink = `http://localhost/php%20shopping/shoppingphp/customer/single-product.php?tensp=${selectData}`;
+            window.location.replace(webLink);
+
             searchWrapper.classList.remove("active");
         }
 
         function showSuggestions(list) {
+            debugger
+            let listData_1;
+            if (!list.length > 1) {
+                listData_1 = `<li>  </li>`;
+            } else {
+                listData_1 = list.join('');
+            }
+            suggBox.innerHTML = listData_1;
+            console.log(suggBox,'innerHTML');
+        }
+        function showSuggestions_two(list) {
             let listData;
-            if (!list.length) {
-                userValue = inputBox.value;
-                listData = `<li>${userValue}</li>`;
+            if (!list.length > 1) {
+                listData = `<li>  </li>`;
             } else {
                 listData = list.join('');
             }
