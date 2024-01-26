@@ -1,142 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-
-    <link rel="stylesheet" href="css/fillterindex.css">
-    <link rel="stylesheet" href="css/step2.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-    <link rel="stylesheet" href="index.css">
-    <style>
-        .lds-heart {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-            transform: rotate(45deg);
-            transform-origin: 40px 40px;
-        }
-
-        .lds-heart div {
-            top: 32px;
-            left: 32px;
-            position: absolute;
-            width: 32px;
-            height: 32px;
-            background: rgb(227, 5, 120);
-            animation: lds-heart 1.2s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
-        }
-
-        .lds-heart div:after,
-        .lds-heart div:before {
-            content: " ";
-            position: absolute;
-            display: block;
-            width: 32px;
-            height: 32px;
-            background: rgb(227, 5, 120);
-        }
-
-        .lds-heart div:before {
-            left: -24px;
-            border-radius: 50% 0 0 50%;
-        }
-
-        .lds-heart div:after {
-            top: -24px;
-            border-radius: 50% 50% 0 0;
-        }
-
-        @keyframes lds-heart {
-            0% {
-                transform: scale(0.95);
-            }
-
-            5% {
-                transform: scale(1.1);
-            }
-
-            39% {
-                transform: scale(0.85);
-            }
-
-            45% {
-                transform: scale(1);
-            }
-
-            60% {
-                transform: scale(0.95);
-            }
-
-            100% {
-                transform: scale(0.9);
-            }
-        }
-
-        .card-dienthoai {
-            height: 330px;
-
-            padding: 16px;
-            border: 1px solid #f3f3f3 !important;
-
-        }
-
-        .card-dienthoai:hover {
-            -webkit-box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
-            -moz-box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
-            box-shadow: 0 2px 12px rgba(0, 0, 0, .12);
-        }
-
-        .card-dienthoai img {
-            width: 180px;
-            height: 150px;
-            cursor: pointer;
-        }
-
-        .card-dienthoai #single-product-tieude a {
-            font-size: 14px;
-            text-decoration: none;
-            color: black;
-        }
-
-        .card-dienthoai #single-product-tieude a:hover {
-            color: #5a88ca;
-        }
-
-        #single-product-tieude {
-            margin: 0 0 0 0px;
-            margin-top: 10px;
-            line-height: 17px;
-        }
-
-        .product-carouse ins {
-            color: #e83a45;
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-            line-height: 18px;
-            margin-bottom: 5px;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .product-carouse {
-            margin-top: 15px;
-        }
-    </style>
-</head>
-
-<body>
-
-</body>
-
-</html>
 <?php
-$hang = 'hang';
-$nhucau = 'nhucau';
 session_start();
 $conn = mysqli_connect("localhost", "root", "", "mobile", "3307") or die();
 if ($conn->connect_error) {
@@ -147,14 +9,13 @@ if (isset($_SESSION['USER_NAME'])) {
     $Username = $_SESSION['USER_NAME'];
     echo $Username;
 }
-require "../inc/headerweb.php";
+require "inc/header.php";
 
 ?>
-<!-- End mainmenu area                      -->
-<!-- Slider -->
 
 
-<div id="slider" class="slider-area">
+
+<div class="slider-area">
 
     <div class="block-slider block-slider4">
         <ul class="" id="bxslider-home4">
@@ -188,17 +49,15 @@ require "../inc/headerweb.php";
 
 
 
-
 </div> <!-- End main content area -->
-<!-- <div class="abc">Hiển thị</div> -->
 <div class="maincontent-area">
     <div class="zigzag-bottom"></div>
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div id="latest-product" class="latest-product">
-                    <h2 class="section-title"></h2>
-                    <div id="product-carousel" class="product-carousel">
+                    <h2 class="section-title">Điện thoại giá rẻ</h2>
+                    <div id="product-carousel" class="product-carousel" style="display: flex;flex-wrap: nowrap">
 
                         <?php
                         $sql = mysqli_query($conn, "SELECT * FROM sanpham WHERE GIA < 9000000 ");
@@ -220,7 +79,7 @@ require "../inc/headerweb.php";
 
                                     <div id="single-product-gia" class="product-carousel-price">
                                         <ins><?php echo $row['gia'] ?> VND</ins>
-
+                                        <!-- <del>$100.00</del> -->
                                     </div>
                                 </div>
                         <?php
@@ -235,11 +94,181 @@ require "../inc/headerweb.php";
     </div>
 </div>
 
-
+<!-- <div class="brands-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="brand-wrapper">
+                    <div class="brand-list">
+                        <img src="img/brand1.png" alt="">
+                        <img src="img/brand2.png" alt="">
+                        <img src="img/brand3.png" alt="">
+                        <img src="img/brand4.png" alt="">
+                        <img src="img/brand5.png" alt="">
+                        <img src="img/brand6.png" alt="">
+                        <img src="img/brand1.png" alt="">
+                        <img src="img/brand2.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 <!-- End brands area -->
 
 
-
+<div class="product-widget-area">
+    <div class="zigzag-bottom"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Top Sellers</h2>
+                    <a href="" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony Smart TV - 2015</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new mac book 2015</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Recently Viewed</h2>
+                    <a href="#" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony Smart Air Condtion</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-2.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="single-product-widget">
+                    <h2 class="product-wid-title">Top New</h2>
+                    <a href="#" class="wid-view-more">View All</a>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-3.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Apple new i phone 6</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-4.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Samsung gallaxy note 4</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                    <div class="single-wid-product">
+                        <a href="single-product.html"><img src="img/product-thumb-1.jpg" alt="" class="product-thumb"></a>
+                        <h2><a href="single-product.html">Sony playstation microsoft</a></h2>
+                        <div class="product-wid-rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                        </div>
+                        <div class="product-wid-price">
+                            <ins>$400.00</ins> <del>$425.00</del>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- End product widget area -->
 
 
@@ -300,6 +329,9 @@ require "../inc/headerweb.php";
 
                             </div>
                         </div>
+                        <!-- <div class="slidecontainer">
+                            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
+                        </div> -->
                         <div class="chon-2">
                             <h6>
                                 Loại điện thoại
@@ -348,26 +380,7 @@ require "../inc/headerweb.php";
         </div>
     </div>
 </div>
-<div class="footer-bottom-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8">
-                <div class="copyright">
-                    <p>&copy; 2015 uCommerce. All Rights Reserved. <a href="http://www.freshdesignweb.com" target="_blank">freshDesignweb.com</a></p>
-                </div>
-            </div>
 
-            <div class="col-md-4">
-                <div class="footer-card-icon">
-                    <i class="fa fa-cc-discover"></i>
-                    <i class="fa fa-cc-mastercard"></i>
-                    <i class="fa fa-cc-paypal"></i>
-                    <i class="fa fa-cc-visa"></i>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <!-- End footer bottom area -->
 <div id="loading" style="width: 100vw; overflow: hidden;height: 100vh; display: flex;justify-content: center;align-items: center;position: fixed;top:0px;left: 0px; background: white; display: none;z-index: 9999">
     <div class="lds-heart">
@@ -394,16 +407,491 @@ require "../inc/headerweb.php";
 <script type="text/javascript" src="js/bxslider.min.js"></script>
 <script type="text/javascript" src="js/script.slider.js"></script>
 <script>
- 
-    
-    // viết hàm nhận api step 1 : (object gồm giá , hãng ,đề xuất, dungluong, dung lượng lưu trữ , loại điện thoại)
-    
-    // step 2 : fetch api tới back end (nhận số lượng )
+    let boloc = {
+        hang: [],
+        gia: [],
+        dexuat: [],
+        ldt: [],
+        dungluong: [],
+        dllt: []
 
-    // step 3 : thay đổi url , hiển thị sản phẩm .
+    };
+    let btn = document.querySelector("#ketqua");
+
+    let danhSachHienThi = {}
+    let listKey = []
+    // let link = "?hang = iphone,samsung"
+    //     const putDb = async () => {
+
+    // const res = await fetch("test.php", {
+    //     method: "GET",
+    //     headers: {
+    //         "Content-Type": "application/json"
+    //     }
+    // });
+    // let output = await res.json();
+    // console.log(output);
+    // // return danhSachHienThi =  await output
+
+
+
+
+
+
+    // }
+
+    const getshowfilter = async () => {
+        const getHang = async () => {
+
+            const res = await fetch("fetch.php", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            let output = await res.json();
+            console.log(output, "output");
+            return output
+        }
+
+        danhSachHienThi = await getHang()
+        listKey = Object.keys(danhSachHienThi)
+        console.log(listKey, "listkey")
+        console.log(danhSachHienThi, "danhsach trong api");
+        hienThiDanhSach();
+        showUIUX()
+    }
+
     
-    
+
    
+    
+
+
+
+
+
+    const handlleUrl = async () => {
+
+
+        let url = location.href;
+        console.log(url)
+        let layfilter = url.split("?").splice(1)
+        if (layfilter.length > 0) {
+            let list = layfilter.toString().split("&");
+            console.log(list)
+            for (index = 0; index < list.length; index++) {
+                let urlItem = list[index].split("=")
+                let key = urlItem[0]
+                let valueString = urlItem.splice(1).toString();
+                let danhsach = valueString.split(",")
+
+
+                for (item = 0; item < danhsach.length; item++) {
+                    console.log(danhsach[item],'handleurl')
+                    handleData(key, danhsach[item])
+                    console.log(key,"key");
+                    console.log(danhsach[item],'danhsach')
+                }
+
+            }
+            handelefilter()
+
+
+            let url = 'http://localhost/thegioididong/getds.php?modal=1&hang=iphone';
+            for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+                console.log(boloc,"bolocinfor") 
+                if (boloc[listKey[indexKey]].length > 0) {
+                    url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+                }
+            }
+            console.log(url,"url gửi đi")
+            Api = url.slice(0, -1)
+            
+            // console.log(link)
+            // window.location.replace(link);
+            
+
+            try {
+                let loading = document.querySelector("#loading");
+                loading.style.display = "flex";
+
+                const res = await fetch(Api, {
+                    method: "GET",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                });
+                // console.log(Api)
+
+                let danhsach = await res.json();
+                console.log(Api, "danhsachAPI", "APi trả về ")
+                loading.style.display = "none";
+
+                // window.location.replace(link);8
+                // console.log(link)
+
+
+                return html(danhsach)
+
+                return output
+            } catch (error) {
+
+            }
+        }
+
+
+
+
+
+
+    }
+
+
+
+    const countValue = () => {
+        let count = 0;
+        for (let index = 0; index < listKey.length; index++) {
+
+            count = boloc[listKey[index]].length + count;
+        }
+        console.log(count, "count")
+    }
+
+    const hienThiDanhSach = async () => {
+        if (!!danhSachHienThi) {
+            const hangPhone = document.getElementById("hang-phone")
+            const giaPhone = document.getElementById("gia-phone")
+            const ldtPhone = document.getElementById("ldt-phone")
+            const ncPhone = document.getElementById("dexuat-phone")
+            const rawphone = document.getElementById("ram-phone")
+            // const dlltPhone = document.getElementById("dllt-phone")
+            const dlphPhone = document.getElementById("dlph-phone")
+
+            console.log(hangPhone)
+
+            if (danhSachHienThi.hang.length > 0) {
+                let htmlHang = ""
+                for (let index = 0; index < danhSachHienThi.hang.length; index++) {
+                    htmlHang += "<div  id='" + danhSachHienThi.hang[index].value + "'   onclick=\"handleClick('hang','" + danhSachHienThi.hang[index].value + "','" + danhSachHienThi + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.hang[index].tieude + "</p> </div>"
+                }
+                hangPhone.innerHTML = htmlHang
+            }
+            if (danhSachHienThi.gia.length > 0) {
+                let htmlGia = "";
+                for (let index = 0; index < danhSachHienThi.gia.length; index++) {
+                    htmlGia += "<div id='" + danhSachHienThi.gia[index].value + "'  onclick=\"handleClick('gia','" + danhSachHienThi.gia[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.gia[index].tieude + "</p> </div>"
+                }
+                giaPhone.innerHTML = htmlGia
+            }
+
+            if (danhSachHienThi.dungluong.length > 0) {
+                let htmlraw = "";
+                console.log("manh dep trai")
+                for (let index = 0; index < danhSachHienThi.dungluong.length; index++) {
+                    htmlraw += "<div id= '" + danhSachHienThi.dungluong[index].value + "'  onclick=\"handleClick('dungluong','" + danhSachHienThi.dungluong[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.dungluong[index].tieude + "</p> </div>"
+                }
+                rawphone.innerHTML = htmlraw
+            }
+            if (danhSachHienThi.dexuat.length > 0) {
+                let htmlnc = "";
+                for (let index = 0; index < danhSachHienThi.dexuat.length; index++) {
+                    htmlnc += "<div id='" + danhSachHienThi.dexuat[index].value + "'  onclick=\"handleClick('dexuat','" + danhSachHienThi.dexuat[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.dexuat[index].tieude + "</p> </div>"
+                }
+                ncPhone.innerHTML = htmlnc
+            }
+
+            if (danhSachHienThi.ldt.length > 0) {
+                let htmlldt = "";
+                for (let index = 0; index < danhSachHienThi.ldt.length; index++) {
+                    htmlldt += "<div id='" + danhSachHienThi.ldt[index].value + "'  onclick=\"handleClick('ldt','" + danhSachHienThi.ldt[index].value + "')\"  class=\"card_ldt\">" + "<img src='" + danhSachHienThi.ldt[index].img + "'>" + "<p class=\"text\">" + danhSachHienThi.ldt[index].tieude + "</p> </div>"
+                }
+                ldtPhone.innerHTML = htmlldt
+            }
+
+
+
+            if (danhSachHienThi.dllt.length > 0) {
+                let htmldllt = "";
+                for (let index = 0; index < danhSachHienThi.dllt.length; index++) {
+                    htmldllt += "<div id= '" + danhSachHienThi.dllt[index].value + "'  onclick=\"handleClick('dllt','" + danhSachHienThi.dllt[index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi.dllt[index].tieude + "</p> </div>"
+                }
+                dlphPhone.innerHTML = htmldllt
+            }
+
+
+        }
+
+
+
+    };
+
+    function handleClick(key, value, danhSachHienThi) {
+        handleData(key, value)
+        showUIUX()
+        handelefilter();
+
+    }
+    const showUIUX = async () => {
+        const showHang = document.getElementById("showHang")
+        let showHtml = "";
+        let deleteAll = `<div> <p onclick=\"handleDeleteAll()\" class="xoatatca" id="deleteALL" style="color: blue; font-size: 14px;cursor: pointer;}">Xóa tất cả</p> </div>`
+        if (boloc.dexuat.length > 0 || boloc.dungluong.length > 0 || boloc.hang.length > 0 || boloc.gia.length > 0 || boloc.dllt.length > 0 || boloc.ldt.length > 0) {
+            for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+                for (let index = 0; index < danhSachHienThi[listKey[indexKey]].length; index++) {
+                    let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
+                    id.style.border = "1px solid #666"
+                    for (let item = 0; item < boloc[listKey[indexKey]].length; item++) {
+                        if (boloc[listKey[indexKey]][item] == danhSachHienThi[listKey[indexKey]][index].value) {
+                            let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
+                            id.style.border = "2px solid #288ad6"
+                            showHtml += "<div   onclick=\"handleClick('" + listKey[indexKey] + "','" + danhSachHienThi[listKey[indexKey]][index].value + "')\"  class=\"spc\">" + "<p>" + danhSachHienThi[listKey[indexKey]][index].tieude + "</p> " + " &emsp; <i class=\"fa-regular fa-calendar-xmark\" \></i> </div>"
+                        }
+                    }
+                }
+            }
+            showHtml += deleteAll
+
+        } else {
+            for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+                for (let index = 0; index < danhSachHienThi[listKey[indexKey]].length; index++) {
+                    let id = document.getElementById(danhSachHienThi[listKey[indexKey]][index].value)
+                    id.style.border = "1px solid #666"
+
+                }
+            }
+            console.log(boloc, "afdsa")
+        }
+        countValue()
+        showHang.innerHTML = showHtml
+    }
+
+    const handleDeleteAll = () => {
+        boloc.hang.length = 0
+        boloc.dexuat.length = 0
+        boloc.dungluong.length = 0
+        boloc.gia.length = 0
+        boloc.ldt.length = 0
+        boloc.dllt.length = 0
+        showUIUX();
+        handelefilter()
+    }
+
+    function handleData(key, value) {
+        if (key === "hang") {
+            if (boloc.hang.length > 0) {
+                for (let index = 0; index < boloc.hang.length; index++) {
+                    if (value === boloc.hang[index]) {
+                        return boloc.hang.splice(index, 1)
+                    }
+                }
+                return boloc.hang.push(value)
+            }
+            return boloc.hang.push(value)
+        }
+        if (key === "gia") {
+            if (boloc.gia.length > 0) {
+                for (let index = 0; index < boloc.gia.length; index++) {
+                    if (value === boloc.gia[index]) {
+                        return boloc.gia.splice(index, 1)
+                    }
+                }
+                return boloc.gia.push(value)
+
+            }
+            return boloc.gia.push(value)
+        }
+        if (key === "dexuat") {
+            if (boloc.dexuat.length > 0) {
+                for (let index = 0; index < boloc.dexuat.length; index++) {
+                    if (value === boloc.dexuat[index]) {
+                        return boloc.dexuat.splice(index, 1)
+                    }
+                }
+                return boloc.dexuat.push(value)
+
+            }
+            return boloc.dexuat.push(value)
+        }
+        if (key === "dungluong") {
+            if (boloc.dungluong.length > 0) {
+                for (let index = 0; index < boloc.dungluong.length; index++) {
+                    if (value === boloc.dungluong[index]) {
+                        return boloc.dungluong.splice(index, 1)
+                    }
+                }
+                return boloc.dungluong.push(value)
+
+            }
+
+            return boloc.dungluong.push(value)
+        }
+        if (key === "dllt") {
+            if (boloc.dllt.length > 0) {
+                for (let index = 0; index < boloc.dllt.length; index++) {
+                    if (value === boloc.dllt[index]) {
+                        return boloc.dllt.splice(index, 1)
+                    }
+                }
+                return boloc.dllt.push(value)
+
+            }
+            return boloc.dllt.push(value)
+        }
+        if (key === "ldt") {
+            if (boloc.ldt.length > 0) {
+                for (let index = 0; index < boloc.ldt.length; index++) {
+                    if (value === boloc.ldt[index]) {
+                        return boloc.ldt.splice(index, 1)
+                    }
+                }
+                return boloc.ldt.push(value)
+
+            }
+            return boloc.ldt.push(value)
+        }
+    }
+
+
+
+    const handelefilter = async () => {
+        let link = 'http://localhost/thegioididong/getsl.php?';
+        for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+            if (boloc[listKey[indexKey]].length > 0) {
+                link += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+
+            }
+
+        }
+        postApi = link.slice(0, -1)
+        console.log(postApi);
+
+
+
+        // fetch(postApi).then(function(response) {
+        //     let response = await response.json();
+
+        // }).then(function(posts) {
+        //     console.log(posts);
+        // });
+
+        try {
+            let btn = document.querySelector("#ketqua"),
+                spinIcon = document.querySelector(".spinner"),
+                btnText = document.querySelector(".btn-text");
+            btn.style.cursor = "wait";
+            btn.classList.add("checked");
+            spinIcon.style.display = "block";
+            spinIcon.classList.add("spin");
+            btnText.textContent = "Loading";
+            const res = await fetch(postApi, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
+            let sumNumber = await res.json()
+            console.log(sumNumber)
+            if (sumNumber.soluong.soluong > 0) {
+                btn.style.pointerEvents = "auto"
+                btn.style.cursor = "pointer";
+                btn.style.background = "#4070f4"
+
+                spinIcon.style.display = "none";
+                btnText.textContent = "Xem " + sumNumber.soluong.soluong + " kết quả ";
+
+            } else {
+                btn.style.pointerEvents = "none";
+                spinIcon.style.display = "none";
+                btn.style.background = "red"
+                btnText.textContent = "Xem " + sumNumber.soluong.soluong + " kết quả ";
+
+            }
+
+            return output
+        } catch (error) {
+
+        }
+
+        // fetch(postApi2).then(function(response){
+        //     return response.json();
+        // }).then(function(posts2){
+        //     console.log(posts2);
+        // });
+
+
+
+
+
+
+
+    }
+
+    const html = (danhsach) => {
+        // console.log(danhsach, "dad")
+        if (danhsach && danhsach.length > 0) {
+            let hienthi = ""
+            let produc = document.querySelector("#product-carousel");
+            if (produc) {
+                produc.remove();
+            }
+            let late = document.querySelector("#latest-product")
+            late.innerHTML = hienthi; //clear data cũ
+
+
+            for (let index = 0; index < danhsach.length; index++) {
+                // console.log(danhsach, "qrwer")
+                hienthi += ` <div id="single-product" class="card-dienthoai" style="width:200px">
+                                    <div  class="product-image">
+                                         <img  id="single-product-img" src="${danhsach[index].img}"  alt="">
+                                    </div>
+
+                                    <h2 id="single-product-tieude"><a href="single-product.html">${danhsach[index].ten}</a></h2>
+
+                                    <div id="single-product-gia" class="product-carouse">
+                                        <ins>${Number(danhsach[index].gia).toLocaleString() } VND</ins>
+                                        
+                                    </div>
+                                </div>`
+
+            }
+            late.innerHTML = hienthi // thêm data cũ
+            late.style.display = "flex";
+            late.style.flexWrap = "wrap";
+            late.style.gap = "24px"
+        }
+
+
+
+    }
+
+
+    btn.onclick = handleClickKetQua = async () => {
+        // let  hienthiurl  = "http://localhost/php%20shopping/shoppingphp/customer/getds.php?"
+        let url = 'http://localhost/thegioididong/getds?modal=1&';
+        let hienthi = 'http://localhost/thegioididong/index.php?modal=1&';
+        for (indexKey = 0; indexKey < listKey.length; indexKey++) {
+            if (boloc[listKey[indexKey]].length > 0) {
+                url += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+                hienthi += listKey[indexKey] + '=' + boloc[listKey[indexKey]].join() + "&"
+            }
+        }
+        Api = url.slice(0, -1)
+        link = hienthi.slice(0, -1)
+        window.location.replace(link);
+
+
+
+    }
+
+
+    handlleUrl();
+    // getshowfilter()
+    // hienThiDanhSach()
+    showUIUX()
+
+    // hienThiDanhSach()
+    console.log(danhSachHienThi, "danhSachHienThi")
 </script>
 </body>
 

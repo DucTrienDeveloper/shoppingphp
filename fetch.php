@@ -265,7 +265,7 @@ $phone->dungluong[] = $chiso5;
 $phone->dungluong[] = $chiso6;
 $phone->dungluong[] = $chiso7;
 $phone->dexuat[] = $noidung;
-$phone->dexuat[] = $noidung2;
+$phone->dexuat[] = $noidung2;   
 $phone->dexuat[] = $noidung3;
 $phone->dexuat[] = $noidung4;
 

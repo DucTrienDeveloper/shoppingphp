@@ -19,7 +19,7 @@ if (isset($_SESSION['USER_NAME'])) {
     $idKH = $_SESSION['USER_ID'];
     echo $Username;
 }
-require "../inc/headerweb.php";
+require "../inc/header.php";
 if ($id == 1){
     $loaisp = 'iphone';
 }

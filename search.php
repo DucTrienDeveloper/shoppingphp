@@ -9,7 +9,7 @@ $id = $_GET['id'];
 error_reporting(0);
 $idkh = $_SESSION['USER_ID'];
 $gia = $_GET['gia'];
-require "../inc/headerweb.php";
+require "../inc/header.php";
 
 if(isset($_POST['search'])){
     

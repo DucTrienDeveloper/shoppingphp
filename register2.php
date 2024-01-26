@@ -40,7 +40,6 @@
           <label>mật khẩu</label>
           <input type="text" id="password" placeholder="mật khẩu" required />
         </div>
-
         <div class="input-box address">
           <label>tuổi</label>
           <input type="text" id="age" placeholder="Tuổi" required />
